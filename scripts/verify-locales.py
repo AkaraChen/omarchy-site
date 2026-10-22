@@ -113,6 +113,12 @@ for code in codes:
         check(page.root.get('dir') == locale.get('direction', 'ltr'), code, path, 'dir', page.root.get('dir'))
         canonical = [link.get('href') for link in page.links if link.get('rel') == 'canonical']
         check(canonical == [domain + path], code, path, 'canonical', canonical)
+        check(any(
+            link.get('rel') == 'alternate'
+            and link.get('type') == 'application/rss+xml'
+            and link.get('href') == domain + '/news/rss.xml'
+            for link in page.links
+        ), code, path, 'rss autodiscovery')
         check(page.meta.get('og:url') == domain + path, code, path, 'og:url', page.meta.get('og:url'))
         check(page.meta.get('og:locale') == locale['ogLocale'], code, path, 'og:locale', page.meta.get('og:locale'))
         alternates = {link.get('hreflang'): link.get('href') for link in page.links if link.get('rel') == 'alternate' and link.get('hreflang')}

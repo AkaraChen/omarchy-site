@@ -82,7 +82,7 @@
       "city": null,
       "country": "MX",
       "online": false,
-      "geo": { "lat": 19.3207722, "lon": -99.1514678, "approximate": true },
+      "geo": { "lat": 19.3207722, "lon": -99.1514677, "approximate": true },
       "hosts": [],
       "cover": "/images/meetups/evt-UupMB4dm4GIoWTG-full.webp",
       "coverWidth": 800,

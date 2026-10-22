@@ -86,7 +86,12 @@ const FIXES = [
   t(' incompatibility.'),
   t(' paper cut.'),
 ] as const
-const ISO_URL = release.isoUrl
+// A build can name the host the ISO comes from: omarchy.cn's copy of the zh-CN
+// edition serves mainland China, so it links the ISO served from there.
+const ISO_URL = new URL(
+  new URL(release.isoUrl).pathname,
+  import.meta.env?.PUBLIC_ISO_ORIGIN || release.isoUrl,
+).href
 
 /**
  * Han and kana editions set no space between words and close a sentence with
